@@ -20,6 +20,7 @@ class MinimalPublisher(Node):
     def __init__(self):
         super().__init__('minimal_publisher')
         self.hand_image_publisher_ = self.create_publisher(sensor_msgs.msg.Image, 'hand_image', 10)
+        self.hand_msg_publisher_ = self.create_publisher(Hand, 'hand_msg', 10)
         # timer_period = 0.5  # seconds
         # self.timer = self.create_timer(timer_period, self.timer_callback)
         # self.i = 0
@@ -65,6 +66,7 @@ class MinimalPublisher(Node):
 
             image.flags.writeable = True
             image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+            msg = Hand()
             if results.multi_hand_landmarks:
                 for hand_landmarks in results.multi_hand_landmarks:
                     print(
@@ -73,6 +75,21 @@ class MinimalPublisher(Node):
                               f'{hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].y})'
                           )
                     
+                    msg.index_tip_x = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].x
+                    msg.index_tip_y = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].y
+                    msg.index_tip_z = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_TIP].z
+                    
+                    msg.index_dip_x = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_DIP].x
+                    msg.index_dip_y = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_DIP].y
+                    msg.index_dip_z = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_DIP].z
+                    
+                    msg.index_pip_x = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_PIP].x
+                    msg.index_pip_y = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_PIP].y
+                    msg.index_pip_z = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_PIP].z
+                    
+                    msg.index_mcp_x = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].x
+                    msg.index_mcp_y = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].y
+                    msg.index_mcp_z = hand_landmarks.landmark[self.mp_hands.HandLandmark.INDEX_FINGER_MCP].z
                     # hand_image_msg.index_finger_tip_x = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x
                     # hand_image_msg.index_finger_tip_y = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].y
                     # hand_image_msg.index_finger_tip_z = hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].z
@@ -83,6 +100,7 @@ class MinimalPublisher(Node):
             # image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
             # image = Image.fromarray(image.astype(np.uint8))
             self.hand_image_publisher_.publish(bridge.cv2_to_imgmsg(image, "bgr8"))
+            self.hand_msg_publisher_.publish(msg)
             # cv2.imshow('MediaPipe Hands', image)
             # cap.release()     
             
