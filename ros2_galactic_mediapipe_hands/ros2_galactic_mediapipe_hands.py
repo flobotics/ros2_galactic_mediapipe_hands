@@ -11,6 +11,9 @@ import cv2
 import numpy as np
 from PIL import Image
 
+# import ros2_galactic_mediapipe_hands_interfaces.msg.Hand
+from ros2_galactic_mediapipe_hands_interfaces.msg import Hand
+
 
 class MinimalPublisher(Node):
 
