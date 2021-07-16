@@ -79,26 +79,26 @@ class MinimalPublisher(Node):
             
             odom_trans = TransformStamped()
             odom_trans.header.frame_id = 'odom'
-            odom_trans.child_frame_id = 'wrist1'
+            odom_trans.child_frame_id = 'wrist'
             
             odom_trans0 = TransformStamped()
-            odom_trans0.header.frame_id = 'wrist1'
-            odom_trans0.child_frame_id = 'metacarpals1'
+            odom_trans0.header.frame_id = 'wrist'
+            odom_trans0.child_frame_id = 'index_finger_mcp'
             
             odom_trans1 = TransformStamped()
-            odom_trans1.header.frame_id = 'metacarpals1'
-            odom_trans1.child_frame_id = 'proximal1'
+            odom_trans1.header.frame_id = 'index_finger_mcp'
+            odom_trans1.child_frame_id = 'index_finger_pip'
             
             odom_trans2 = TransformStamped()
-            odom_trans2.header.frame_id = 'proximal1'
-            odom_trans2.child_frame_id = 'intermediate1'
+            odom_trans2.header.frame_id = 'index_finger_pip'
+            odom_trans2.child_frame_id = 'index_finger_dip'
             
             odom_trans3 = TransformStamped()
-            odom_trans3.header.frame_id = 'intermediate1'
-            odom_trans3.child_frame_id = 'distal1'
+            odom_trans3.header.frame_id = 'index_finger_dip'
+            odom_trans3.child_frame_id = 'index_finger_tip'
             
             odom_trans4 = TransformStamped()
-            odom_trans4.header.frame_id = 'wrist1'
+            odom_trans4.header.frame_id = 'wrist'
             odom_trans4.child_frame_id = 'thumb_cmc'
             
             odom_trans5 = TransformStamped()
