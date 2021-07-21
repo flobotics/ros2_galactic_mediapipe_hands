@@ -135,7 +135,7 @@ class MinimalPublisher(Node):
                     height = 0.
                     now = self.get_clock().now()
                     joint_state.header.stamp = now.to_msg()
-                    joint_state.name = ['wrist_joint']
+                    joint_state.name = ['metacarpals_joint', 'metacarpals_2_joint', 'proximal_joint', 'intermediate_joint']
                     
 
                     a = [hand_landmarks.landmark[self.mp_hands.HandLandmark.WRIST].x,
@@ -149,9 +149,9 @@ class MinimalPublisher(Node):
                     c = [hand_landmarks.landmark[self.mp_hands.HandLandmark.THUMB_MCP].x,
                          hand_landmarks.landmark[self.mp_hands.HandLandmark.THUMB_MCP].y,
                          hand_landmarks.landmark[self.mp_hands.HandLandmark.THUMB_MCP].z]
-                    
+                     
                     wrist_thumb_cmc_angle = self.angle_2p_3d(a, b, c)
-                    joint_state.position = [wrist_thumb_cmc_angle]
+                    joint_state.position = [wrist_thumb_cmc_angle, wrist_thumb_cmc_angle, wrist_thumb_cmc_angle, wrist_thumb_cmc_angle]
                     
                     print(
                             f'Thumb wrist  angle: (',
