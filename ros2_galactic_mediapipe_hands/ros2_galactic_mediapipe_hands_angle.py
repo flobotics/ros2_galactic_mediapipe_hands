@@ -68,6 +68,7 @@ class MinimalPublisher(Node):
         angle_rad = np.arccos(res)
     
         return math.degrees(angle_rad)
+        #return angle_rad
 
 
     def listener_callback(self, data):
@@ -151,6 +152,7 @@ class MinimalPublisher(Node):
                          hand_landmarks.landmark[self.mp_hands.HandLandmark.THUMB_MCP].z]
                      
                     wrist_thumb_cmc_angle = self.angle_2p_3d(a, b, c)
+                    wrist_thumb_cmc_angle = math.radians(wrist_thumb_cmc_angle)
                     joint_state.position = [wrist_thumb_cmc_angle, wrist_thumb_cmc_angle, wrist_thumb_cmc_angle, wrist_thumb_cmc_angle]
                     
                     print(

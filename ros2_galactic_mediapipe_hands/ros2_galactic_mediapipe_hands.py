@@ -79,7 +79,7 @@ class MinimalPublisher(Node):
 
             odom_trans = TransformStamped()
             odom_trans.header.frame_id = 'odom'
-            odom_trans.child_frame_id = 'metacarpals1'
+            odom_trans.child_frame_id = 'wrist'
 
             odom_trans0 = TransformStamped()
             odom_trans0.header.frame_id = 'wrist'

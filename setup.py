@@ -18,12 +18,13 @@ setup(
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
-    entry_points={
-        'console_scripts': [
-            'ros2_galactic_mediapipe_hands = ros2_galactic_mediapipe_hands.ros2_galactic_mediapipe_hands:main'
-        ],
+    entry_points={ 
         'console_scripts': [
             'ros2_galactic_mediapipe_hands_angle = ros2_galactic_mediapipe_hands.ros2_galactic_mediapipe_hands_angle:main'
         ],
+        'console_scripts': [
+            'ros2_galactic_mediapipe_hands = ros2_galactic_mediapipe_hands.ros2_galactic_mediapipe_hands:main'
+        ],
+      
     },
 )
